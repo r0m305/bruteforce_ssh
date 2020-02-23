@@ -25,7 +25,13 @@ class Engine:
     def __init__(self):
         #variables required:
         #hostname, username,timeout, wordlist, threads
-
+        print(colored("   ____      __        __","yellow"))
+        print(colored(" /_____|    |  |      |  |","yellow"))
+        print(colored("|           |  |      |  |  ","yellow"))
+        print(colored(" \___       |   \____/   |","yellow"))
+        print(colored("      \     |   /    \   |","yellow"))
+        print(colored(" ______|    |  |      |  |","yellow"))
+        print(colored("|_____/  x2 |__|      |__|  BRUTER","yellow"))
         print(colored("SSHBrute script","blue"))
         print(colored("Written by Romeos CyberGypsy","yellow"))
         print(colored("I recommend incorporating proxy chains when using this script to avoid errors.","green"))
