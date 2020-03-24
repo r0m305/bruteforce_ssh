@@ -1,3 +1,8 @@
+    ░█▀▀░█▀▀░█░█░░░█▀▄░█▀▄░█░█░▀█▀░█▀▀
+    ░▀▀█░▀▀█░█▀█░░░█▀▄░█▀▄░█░█░░█░░█▀▀
+    ░▀▀▀░▀▀▀░▀░▀░░░▀▀░░▀░▀░▀▀▀░░▀░░▀▀▀
+
+- Bruteforce ssh servers with this script
 Written by Romeos CyberGypsy
 [-] For educational purposes only.
 I will not be held accountable for any misuse of the sript
